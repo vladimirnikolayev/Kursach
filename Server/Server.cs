@@ -13,21 +13,28 @@ namespace Server
 	{
 		private List<Thread> threads;
 
-		internal Server()
+		private string adress;
+		private int port;
+
+		internal Server(string _adress, int _port)
 		{
 			threads = new List<Thread>();
+			adress = _adress;
+			port = _port;
 			Listen();
 		}
 
 		void Listen()
 		{
 			// Устанавливаем для сокета локальную конечную точку
-			IPHostEntry ipHost = Dns.GetHostEntry("localhost");
+			IPHostEntry ipHost = Dns.GetHostEntry(adress);
 			IPAddress ipAddr = ipHost.AddressList[0];
-			IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, 11000);
+			IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, port);
 
 			// Создаем сокет Tcp/Ip
 			Socket sListener = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
+			Console.WriteLine("Listening for connections");
 
 			// Назначаем сокет локальной конечной точке и слушаем входящие сокеты
 			try
@@ -111,7 +118,7 @@ namespace Server
 				expectedDays);
 
 			// Показываем данные на консоли
-			Console.Write("Полученный текст: " + data + "\n\n");
+			Console.Write("Timer: " + data + "\n\n");
 
 			while( true )
 			{
