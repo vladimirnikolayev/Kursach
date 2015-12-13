@@ -38,8 +38,6 @@ namespace Server
 				// Начинаем слушать соединения
 				while (true)
 				{
-					Console.WriteLine("Waiting for connection {0}", ipEndPoint);
-
 					// Программа приостанавливается, ожидая входящее соединение
 					Socket handler = sListener.Accept();
 					var thread = new Thread(Accepter);
@@ -69,20 +67,65 @@ namespace Server
 
 			data += Encoding.UTF8.GetString(bytes, 0, bytesRec);
 
+			string[] timeStrings = data.Split(':');
+
+			int expectedSeconds;
+			int expectedMinutes;
+			int expectedHours;
+			int expectedDays;
+            lock (Program.time)
+			{
+				expectedSeconds =
+					Program.time.Seconds +
+					System.Convert.ToInt32(timeStrings[2]);
+
+				expectedMinutes =
+					Program.time.Minutes +
+					System.Convert.ToInt32(timeStrings[1]);
+				if ( expectedSeconds >= 60 )
+				{
+					++expectedMinutes;
+					expectedSeconds -= 60;
+				}
+
+				expectedHours =
+					Program.time.Hours +
+					System.Convert.ToInt32(timeStrings[0]);
+				if (expectedMinutes >= 60)
+				{
+					++expectedHours;
+					expectedMinutes -= 60;
+				}
+
+				expectedDays = Program.time.Days;
+				if (expectedHours >= 24)
+				{
+					++expectedDays;
+					expectedHours -= 24;
+				}
+			}
+			Time expectedTime = new Time(
+				expectedSeconds,
+				expectedMinutes,
+				expectedHours,
+				expectedDays);
+
 			// Показываем данные на консоли
 			Console.Write("Полученный текст: " + data + "\n\n");
 
-			// Отправляем ответ клиенту\
-			//string reply = "Спасибо за запрос в " + data.Length.ToString()
-			//		+ " символов";
-			//byte[] msg = Encoding.UTF8.GetBytes(reply);
-			//handler.Send(msg);
+			while( true )
+			{
+				lock(Program.time)
+				{
+					if (expectedTime == Program.time)
+						break;
+				}
+			}
 
-			//if (data.IndexOf("<TheEnd>") > -1)
-			//{
-			//	Console.WriteLine("Сервер завершил соединение с клиентом.");
-			//	break;
-			//}
+			Console.WriteLine("end");
+
+			byte[] msg = Encoding.UTF8.GetBytes("End: " + data);
+			handler.Send(msg);
 
 			handler.Shutdown(SocketShutdown.Both);
 			handler.Close();
