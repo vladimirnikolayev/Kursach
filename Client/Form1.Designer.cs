@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.Add = new System.Windows.Forms.Button();
 			this.textBoxSeconds = new System.Windows.Forms.TextBox();
 			this.textBoxHours = new System.Windows.Forms.TextBox();
@@ -35,6 +36,11 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.changeAdressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// Add
@@ -102,6 +108,36 @@
 			this.label3.TabIndex = 8;
 			this.label3.Text = "M";
 			// 
+			// menuStrip1
+			// 
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolStripMenuItem});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(199, 24);
+			this.menuStrip1.TabIndex = 9;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// menuToolStripMenuItem
+			// 
+			this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeAdressToolStripMenuItem});
+			this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+			this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+			this.menuToolStripMenuItem.Text = "Menu";
+			// 
+			// changeAdressToolStripMenuItem
+			// 
+			this.changeAdressToolStripMenuItem.Name = "changeAdressToolStripMenuItem";
+			this.changeAdressToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.changeAdressToolStripMenuItem.Text = "Change adress";
+			this.changeAdressToolStripMenuItem.Click += new System.EventHandler(this.changeAdressToolStripMenuItem_Click);
+			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,10 +150,13 @@
 			this.Controls.Add(this.textBoxHours);
 			this.Controls.Add(this.textBoxSeconds);
 			this.Controls.Add(this.Add);
+			this.Controls.Add(this.menuStrip1);
+			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "Form1";
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.Text = "Timer";
-			this.Load += new System.EventHandler(this.Form1_Load);
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -132,6 +171,10 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem changeAdressToolStripMenuItem;
 	}
 }
 

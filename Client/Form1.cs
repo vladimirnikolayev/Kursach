@@ -27,7 +27,7 @@ namespace Client
 					System.Convert.ToInt32(textBoxSeconds.Text) : 0;
 				int minutes = textBoxMinutes.Text.Length != 0 ?
 					System.Convert.ToInt32(textBoxMinutes.Text) : 0;
-				int hours = textBoxHours.Text.Length == 0 ?
+				int hours = textBoxHours.Text.Length != 0 ?
 					System.Convert.ToInt32(textBoxHours.Text) : 0;
 
 				if (seconds < 0 || seconds >= 60 || minutes < 0 || minutes >= 60 || hours < 0 || hours >= 24)
@@ -44,9 +44,16 @@ namespace Client
 			}
 		}
 
-		private void Form1_Load(object sender, EventArgs e)
+		private void changeAdressToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			var clients = Program.clients;
+			var window = new AdressChangerForm(clients.Ip, clients.Port);
+			window.ShowDialog();
+			if (window.Ok)
+			{
+				clients.Ip = window.IP;
+				clients.Port = window.Port;
+			}
 		}
 	}
 }
