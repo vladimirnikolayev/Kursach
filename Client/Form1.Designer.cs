@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.Add = new System.Windows.Forms.Button();
 			this.textBoxSeconds = new System.Windows.Forms.TextBox();
 			this.textBoxHours = new System.Windows.Forms.TextBox();
@@ -39,7 +39,6 @@
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.changeAdressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -129,14 +128,9 @@
 			// changeAdressToolStripMenuItem
 			// 
 			this.changeAdressToolStripMenuItem.Name = "changeAdressToolStripMenuItem";
-			this.changeAdressToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.changeAdressToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
 			this.changeAdressToolStripMenuItem.Text = "Change adress";
 			this.changeAdressToolStripMenuItem.Click += new System.EventHandler(this.changeAdressToolStripMenuItem_Click);
-			// 
-			// contextMenuStrip1
-			// 
-			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
 			// 
 			// Form1
 			// 
@@ -151,6 +145,7 @@
 			this.Controls.Add(this.textBoxSeconds);
 			this.Controls.Add(this.Add);
 			this.Controls.Add(this.menuStrip1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "Form1";
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -173,7 +168,6 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
-		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem changeAdressToolStripMenuItem;
 	}
 }
