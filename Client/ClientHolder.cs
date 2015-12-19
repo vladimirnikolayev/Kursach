@@ -10,7 +10,7 @@ using System.Net.Sockets;
 
 namespace Client
 {
-	class ClientHolder
+	public class ClientHolder
 	{
 		public string Ip { set; get; }
 		public int Port { set; get; }
@@ -42,9 +42,6 @@ namespace Client
 
 				Socket _sender = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
-				//if (_sender.Available == 0)
-				//	return;
-
 				_sender.Connect(ipEndPoint);
 
 				string message = _time as string;
@@ -55,7 +52,8 @@ namespace Client
 				byte[] bytes = new byte[1024];
 				int bytesRec = _sender.Receive(bytes);
 
-				MessageBox.Show(Encoding.UTF8.GetString(bytes, 0, bytesRec), "Server answer");
+				var dialog = new Dialog(message, this);
+				dialog.ShowDialog();
 
 				_sender.Shutdown(SocketShutdown.Both);
 				_sender.Close();
