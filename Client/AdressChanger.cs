@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace Client
 {
-	public partial class AdressChangerForm : Form
+	public partial class AddressChangerForm : Form
 	{
 		public string IP { set; get; }
 		public int Port { set; get; }
 		public bool Ok { set; get; }
 
-		public AdressChangerForm( string _ip, int _port )
+		public AddressChangerForm( string _ip, int _port )
 		{
 			IP = _ip;
 			Port = _port;

@@ -47,7 +47,7 @@ namespace Client
 		private void changeAdressToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			var clients = Program.clients;
-			var window = new AdressChangerForm(clients.Ip, clients.Port);
+			var window = new AddressChangerForm(clients.Ip, clients.Port);
 			window.ShowDialog();
 			if (window.Ok)
 			{
